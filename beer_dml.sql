@@ -91,6 +91,22 @@ ADD CONSTRAINT `flavor_id`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
+ALTER TABLE `beer`.`econ` 
+CHANGE COLUMN `index` `index` BIGINT(20) NOT NULL ,
+CHANGE COLUMN `date` `date` DATETIME NOT NULL ,
+ADD PRIMARY KEY (`index`);
+
+ALTER TABLE `beer`.`econ` 
+CHANGE COLUMN `econ_week_id` `econ_week_id` BIGINT(20) NULL ,
+ADD INDEX `econ_week_id_idx` (`econ_week_id` ASC) VISIBLE;
+
+ALTER TABLE `beer`.`econ` 
+ADD CONSTRAINT `econ_week_id`
+  FOREIGN KEY (`econ_week_id`)
+  REFERENCES `beer`.`week` (`week_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
 ####################
 
 ALTER TABLE `beer`.`sales` 
