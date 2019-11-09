@@ -1,6 +1,4 @@
-# DEPA Final Project (Fall 2019)
-
-## Benedict Au | Nov 2, 2019
+# DEPA Final Project (Fall 2019) - Beer Sales, Preferences, and the Macroeconomy
 
 ## 0. Introduction
 
@@ -24,10 +22,21 @@ This project can provide insight into consumer purchasing habits, which is highl
 
 ### 0.4 Prerequisites
 
+System requirements: 50 GB of free drive space. 8 GB memory. MySQL 8.0.18 server, MySQL Workbench 8.0, Jupyter Lab/Notebook. 
+
+The MySQL database size will be approximately **17.2 GB**. Check by running the following code in MySQL:  
+
+SELECT table_schema 'database name',  
+  sum( data_length + index_length ) / 1024 / 1024 /1024 'data Base Size in GB'  
+FROM information_schema.TABLES  
+GROUP BY table_schema;
+
+MySQL Workbench DBMS connection read timeout interval to be set at >3600 seconds.
+
 Section 4 requires an empty schema `beer` in MySQL 8. The code is provided in `section 4.0`. 
 
 The following packages are also required and can be installed using `pip` or `conda`:  
-`os`, `glob`, `NumPy`, `pandas-0.25`, `functools`, `sqlalchemy`, `tqdm`, and `fredapi`.
+`os`, `glob` (allows for UNIX-style pathname pattern expansion), `NumPy`, `pandas 0.25` , `sqlalchemy` (writes records stored in a DataFrame to a SQL database), `tqdm` (low overhead iterable progress bar), and `fredapi` (pulls data from St Louis Fed FRED API).
 
 **IMPORTANT**: pandas version `0.24.+` is required as pandas has gained the ability to hold integer dtypes with missing values.
 
@@ -42,3 +51,5 @@ Section 2 provides an overview of the IRI dataset and its various dimensions, th
 Section 3 describes the fact-dimension schema in MySQL. 
 
 Section 4 contains the code for data intake and manipulation. It also pushes pandas dataframes into an empty MySQL `beer` schema. 
+
+---
