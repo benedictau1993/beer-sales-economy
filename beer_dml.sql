@@ -116,15 +116,18 @@ CHANGE COLUMN `UNITS` `UNITS` BIGINT(20) NOT NULL ,
 CHANGE COLUMN `DOLLARS` `DOLLARS` DOUBLE NOT NULL ,
 CHANGE COLUMN `upc_id` `upc_id` BIGINT(20) NOT NULL ;
 
+####################
+
 ALTER TABLE `beer`.`sales` 
 ADD INDEX `store_id_idx` (`store_id` ASC) VISIBLE;
-;
 ALTER TABLE `beer`.`sales` 
 ADD CONSTRAINT `store_id`
   FOREIGN KEY (`store_id`)
   REFERENCES `beer`.`store` (`store_id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+
+####################
 
 ALTER TABLE `beer`.`sales` 
 ADD INDEX `week_id_idx` (`week_id` ASC) VISIBLE;
@@ -136,13 +139,15 @@ ADD CONSTRAINT `week_id`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
-  ALTER TABLE `beer`.`sales` 
-  ADD INDEX `upc_id_idx` (`upc_id` ASC) VISIBLE;
-  ;
-  ALTER TABLE `beer`.`sales` 
-  ADD CONSTRAINT `upc_id`
-    FOREIGN KEY (`upc_id`)
-    REFERENCES `beer`.`upc` (`UPC_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
+####################
+
+ALTER TABLE `beer`.`sales` 
+ADD INDEX `upc_id_idx` (`upc_id` ASC) VISIBLE;
+;
+ALTER TABLE `beer`.`sales` 
+ADD CONSTRAINT `upc_id`
+FOREIGN KEY (`upc_id`)
+REFERENCES `beer`.`upc` (`UPC_id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
