@@ -59,8 +59,8 @@ Section 4 includes the code to create an blank schema on a local MySQL server.
 
 Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, sales, dates, and economic data) onto the local MySQL server. 
 
-Section 10 outlines the process of defining the entities in the `beer` schema.
+Section 10 details the steps taken to migrate the database from local server to Google Cloud SQL. 
 
-Section 11 details the steps taken to migrate the database from local server to Google Cloud SQL. 
+Section 11 gives a quick run-down of Cloud SQL access for data visualisation and analysis in Tableau.
 
-Section 12 gives a quick run-down of Cloud SQL access for data visualisation and analysis in Tableau.
+---
