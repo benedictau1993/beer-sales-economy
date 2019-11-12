@@ -57,7 +57,7 @@ Section 3 describes the fact-dimension schema in MySQL.
 
 Section 4 includes the code to create an blank schema on a local MySQL server.
 
-Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, sales, dates, and economic data) onto the local MySQL server. 
+Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, dates, sales, and economic data) onto the local MySQL server. 
 
 Section 10 details the steps taken to migrate the database from local server to Google Cloud SQL. 
 
