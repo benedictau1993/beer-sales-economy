@@ -16,14 +16,18 @@ Questions that this project can potentially answer:
 
 This project can provide insight into consumer purchasing habits, which is highly desirable to a variety of businesses. Breweries can use this data to plan their production, such that they focus their production on the beer with the highest expected demand. Retailers and restaurants can use this data to plan their inventory, stocking particular products ahead of expected increases in demand.
 
-### 0.3. Data sources
+### 0.3. Methodology
+
+The order of operation is as follows: First, the schema (snowflake EER) of the final MySQL database is designed upon examining the data.  The relevant data from the IRI dataset are combined in groups and read into dataframes in Python. Text columns that appear to be non-categorical are clustered in OpenRefine. The clustered results then are used as a dictionary to normalise said dataframes. The dataframes are then read into a local MySWL server, then upon verification is migrated to Google Cloud SQL. This then allows data access for analysis and visualisation by various stakeholders using Python, R, and Tableau. 
+
+### 0.4. Data sources
 
 - The IRI Academic Marketing Data Set (Bronnenberg, et al, 2012) - 130 GB unzipped - NDA required, access through The University of Chicago Office of Research and National Laboratories Research Computing Center 
 - St. Louis Fed Federal Research Economic Data (FRED) - through FRED API
 
-### 0.4 Prerequisites
+### 0.5 Prerequisites
 
-System requirements: 50 GB of free drive space. 8 GB memory. MySQL 8.0.18 server, MySQL Workbench 8.0, Jupyter Lab/Notebook. 
+System requirements: 50 GB of free drive space. 8 GB memory. Jupyter Lab/Notebook, OpenRefine 3.2, MySQL 8.0.18 server, MySQL Workbench 8.0, Google Cloud Platform, Cloud SQL, and Tableau.
 
 The MySQL database size will be approximately **17.2 GB**. Check by running the following code in MySQL:  
 
@@ -41,7 +45,7 @@ The following packages are also required and can be installed using `pip` or `co
 
 **IMPORTANT**: pandas version `0.24.+` is required as pandas has gained the ability to hold integer dtypes with missing values.
 
-### 0.5. Sections in this notebook
+### 0.6. Sections in this notebook
 
 The following sections in this notebook progress as follows: 
 
@@ -51,12 +55,12 @@ Section 2 provides an overview of the IRI dataset and its various dimensions, th
 
 Section 3 describes the fact-dimension schema in MySQL. 
 
-Section 4 contains the code for data intake and manipulation. It also pushes pandas dataframes into an empty MySQL `beer` schema. 
+Section 4 includes the code to create an blank schema on a local MySQL server.
 
-Section 5 outlines the process of defining the entities in the `beer` schema.
+Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, sales, dates, and economic data) onto the local MySQL server. 
 
-Section 6 details the steps taken to migrate the database from local server to Google Cloud SQL. 
+Section 10 outlines the process of defining the entities in the `beer` schema.
 
-Section 7 gives a quick run-down of Cloud SQL access for data visualisation and analysis in Tableau.
+Section 11 details the steps taken to migrate the database from local server to Google Cloud SQL. 
 
----
+Section 12 gives a quick run-down of Cloud SQL access for data visualisation and analysis in Tableau.
