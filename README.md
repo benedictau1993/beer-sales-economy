@@ -3,7 +3,7 @@
 
 ## 0. Introduction
 
-### 0.1. Executive summary
+### 0.1. Executive summary 
 
 Alcohol is one of the most popular purchases in the US, but does consumers’ love of beer vary with their economic condition? In this project, we seek to derive insights on alcohol consumption patterns with respect to changes in US economic metrics. 
 
@@ -18,7 +18,14 @@ This project can provide insight into consumer purchasing habits, which is highl
 
 ### 0.3. Methodology
 
-The order of operation is as follows: First, the schema (snowflake EER) of the final MySQL database is designed upon examining the data.  The relevant data from the IRI dataset are combined in groups and read into dataframes in Python. Text columns that appear to be non-categorical are clustered in OpenRefine. The clustered results then are used as a dictionary to normalise said dataframes. The dataframes are then read into a local MySWL server, then upon verification is migrated to Google Cloud SQL. This then allows data access for analysis and visualisation by various stakeholders using Python, R, and Tableau. 
+The order of operation is as follows: 
+
+1. First, the schema (snowflake EER) of the final MySQL database is designed upon examining the data.  
+2. The relevant data from the IRI dataset are combined in groups and read into dataframes in Python. 
+3. Text columns that appear to be non-categorical are clustered in OpenRefine. 
+4. The clustered results then are used as a dictionary to normalise said dataframes. 
+5. The dataframes are then read into a local MySWL server in observance of foreign key constraints, and upon verification, is migrated to Google Cloud SQL. 
+6. This then allows data access for analysis and visualisation by various stakeholders using Python, R, and Tableau. 
 
 ### 0.4. Data sources
 
@@ -29,7 +36,7 @@ The order of operation is as follows: First, the schema (snowflake EER) of the f
 
 System requirements: 50 GB of free drive space. 8 GB memory. Jupyter Lab/Notebook, OpenRefine 3.2, MySQL 8.0.18 server, MySQL Workbench 8.0, Google Cloud Platform, Cloud SQL, and Tableau.
 
-The MySQL database size will be approximately **17.2 GB**. Check by running the following code in MySQL:  
+The MySQL database size will be approximately **17 GB**. Check by running the following code in MySQL:  
 
 SELECT table_schema 'database name',  
   sum( data_length + index_length ) / 1024 / 1024 /1024 'data Base Size in GB'  
@@ -57,7 +64,7 @@ Section 3 describes the fact-dimension schema in MySQL.
 
 Section 4 includes the code to create an blank schema on a local MySQL server.
 
-Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, dates, sales, and economic data) onto the local MySQL server. 
+Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, sales, dates, and economic data) onto the local MySQL server. 
 
 Section 10 details the steps taken to migrate the database from local server to Google Cloud SQL. 
 
