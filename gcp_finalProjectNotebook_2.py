@@ -21,7 +21,11 @@ import time
 from fredapi import Fred
 
 # MySQL server credentials
-engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}".format(user="root", pw="rootroot", db="beer"))
+# engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}".format(user="root", pw="rootroot", db="beer"))
+
+# To GCP Cloud SQL DB `depa-cloud-beer2`
+# Need to add public IP using GCloud somehow...
+engine = create_engine("mysql+mysqldb://{user}:{pw}@{public_ip}/{db}".format(user="root", pw="rootroot", public_ip="34.68.143.249", db="beer"))
 
 # We read in the product table:
 prod_all_beer_df = pd.concat([pd.read_excel(f) for f in glob.glob("./IRI BEER DATASET/beer_attributes/prod*_beer.xls*")], ignore_index = True, sort=False)
