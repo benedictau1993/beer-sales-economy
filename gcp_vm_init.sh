@@ -22,7 +22,7 @@ cd ./FinalProject
 git clone https://github.com/benedictau1993/beer-sales-economy .
 gsutil cp gs://depa-bucket-of-white-claws/IRI_beer_dataset_Au.zip .
 unzip IRI_beer_dataset_Au.zip -d .
-mysql --host=10.1.224.3 --user=root --password
+# mysql --host=10.1.224.3 --user=root --password
 
 # Copies files loaded from Github to GCP Bucket
 # gsutil rsync -x "\.git.*" ~/beer-sales-economy gs://depa-bucket-of-white-claws/beer-sales-economy
