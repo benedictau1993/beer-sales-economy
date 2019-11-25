@@ -11,6 +11,9 @@
 # Note: When populating the database with data, it is **paramount** that the data for the tips of the snowflake is inputted first, and the fact tables (`sales`) and `econ` be inserted last. Otherwise, it would throw a `FOREIGN_KEY_CHECKS` error (ERROR 1452: Cannot add or update a child row: a foreign key constraint fails).
 # Note note: For each instance a MySQL table is populated, there will be a binary log generated. Since the SALES data is large, the corresponding binary log will also be large, taking up space in your storage up to 5GB at a time. To purge the binary logs, use the script `PURGE BINARY LOGS BEFORE '<DATETIME>';`.
 
+
+# run with `python3`, not `python`. The latter will bring up Python2
+
 import os
 import glob
 import numpy as np
@@ -19,13 +22,13 @@ from sqlalchemy import create_engine
 from tqdm import tqdm
 import time
 from fredapi import Fred
+import mysqlclient
 
 # MySQL server credentials
 # engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}".format(user="root", pw="rootroot", db="beer"))
 
 # To GCP Cloud SQL DB `depa-cloud-beer2`
 # Need to add public IP using GCloud somehow...
-engine = create_engine("mysql+mysqldb://{user}:{pw}@{public_ip}/{db}".format(user="root", pw="rootroot", public_ip="34.68.143.249", db="beer"))
 
 # We read in the product table:
 prod_all_beer_df = pd.concat([pd.read_excel(f) for f in glob.glob("./IRI BEER DATASET/beer_attributes/prod*_beer.xls*")], ignore_index = True, sort=False)
