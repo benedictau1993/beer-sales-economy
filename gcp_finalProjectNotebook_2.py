@@ -22,10 +22,10 @@ from sqlalchemy import create_engine
 from tqdm import tqdm
 import time
 from fredapi import Fred
-import mysqlclient
+# import mysqlclient
 
 # MySQL server credentials
-# engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}".format(user="root", pw="rootroot", db="beer"))
+engine = create_engine("mysql+pymysql://{user}:{pw}@{public_ip}/{db}".format(user="root", pw="rootroot", public_ip = "35.226.184.202", "db="beer"))
 
 # To GCP Cloud SQL DB `depa-cloud-beer2`
 # Need to add public IP using GCloud somehow...

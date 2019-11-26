@@ -13,6 +13,8 @@
 yes | sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
 sudo apt-get install unzip
 yes | sudo apt install python3-pip
+yes | sudo apt-get install mysql-client
+
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools
 pip3 install numpy pandas sqlalchemy tqdm fredapi mysqlclient
@@ -28,5 +30,14 @@ unzip IRI_beer_dataset_Au.zip -d .
 
 # Copies files loaded from Github to GCP Bucket
 # gsutil rsync -x "\.git.*" ~/beer-sales-economy gs://depa-bucket-of-white-claws/beer-sales-economy
+
+# Echo public IP
+wget -qO - http://ipecho.net/plain; echo
+
+# Create new `beer` database in GCP Cloud
+gcloud sql databases create beer --instance=depa-cloud-beer
+mysql --host=34.70.209.254 --user=root --password
+# pw = rootroot
+
 
 # sudo shutdown
