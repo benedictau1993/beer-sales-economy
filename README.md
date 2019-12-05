@@ -3,9 +3,9 @@
 
 ## 0. Introduction
 
-### 0.1. Executive summary 
+### 0.1. Executive summary
 
-Alcohol is one of the most popular purchases in the US, but does consumers’ love of beer vary with their economic condition? In this project, we seek to derive insights on alcohol consumption patterns with respect to changes in US economic metrics. 
+Alcohol is one of the most popular purchases in the US, but does consumers’ love of beer vary with their economic condition? In this project, we seek to derive insights on alcohol consumption patterns with respect to changes in US economic metrics.
 
 Questions that this project can potentially answer:
 
@@ -18,18 +18,18 @@ This project can provide insight into consumer purchasing habits, which is highl
 
 ### 0.3. Methodology
 
-The order of operation is as follows: 
+The order of operation is as follows:
 
 1. First, the schema (snowflake EER) of the final MySQL database is designed upon examining the data.  
-2. The relevant data from the IRI dataset are combined in groups and read into dataframes in Python. 
-3. Text columns that appear to be non-categorical are clustered in OpenRefine. 
-4. The clustered results then are used as a dictionary to normalise said dataframes. 
-5. The dataframes are then read into a local MySWL server in observance of foreign key constraints, and upon verification, is migrated to Google Cloud SQL. 
-6. This then allows data access for analysis and visualisation by various stakeholders using Python, R, and Tableau. 
+2. The relevant data from the IRI dataset are combined in groups and read into dataframes in Python.
+3. Text columns that appear to be non-categorical are clustered in OpenRefine.
+4. The clustered results then are used as a dictionary to normalise said dataframes.
+5. The dataframes are then read into a local MySWL server in observance of foreign key constraints, and upon verification, is migrated to Google Cloud SQL.
+6. This then allows data access for analysis and visualisation by various stakeholders using Python, R, and Tableau.
 
 ### 0.4. Data sources
 
-- The IRI Academic Marketing Data Set (Bronnenberg, et al, 2012) - 130 GB unzipped - NDA required, access through The University of Chicago Office of Research and National Laboratories Research Computing Center 
+- The IRI Academic Marketing Data Set (Bronnenberg, et al, 2012) - 130 GB unzipped - NDA required, access through The University of Chicago Office of Research and National Laboratories Research Computing Center
 - St. Louis Fed Federal Research Economic Data (FRED) - through FRED API
 
 ### 0.5 Prerequisites
@@ -45,29 +45,45 @@ GROUP BY table_schema;
 
 MySQL Workbench DBMS connection read timeout interval to be set at >3600 seconds.
 
-Section 4 requires an empty schema `beer` in MySQL 8. The code is provided in `section 4.0`. 
+Section 4 requires an empty schema `beer` in MySQL 8. The code is provided in `section 4.0`.
 
 The following packages are also required and can be installed using `pip` or `conda`:  
 `os`, `glob` (allows for UNIX-style pathname pattern expansion), `NumPy`, `pandas 0.25` , `sqlalchemy` (writes records stored in a DataFrame to a SQL database), `tqdm` (low overhead iterable progress bar), and `fredapi` (pulls data from St Louis Fed FRED API).
 
 **IMPORTANT**: pandas version `0.24.+` is required as pandas has gained the ability to hold integer dtypes with missing values.
 
-### 0.6. Sections in this notebook
+### 0.6. Sections in the `.ipynb` Jupyter notebook
 
-The following sections in this notebook progress as follows: 
+The following sections in this notebook progress as follows:
 
-Section 1 explains the procedure to access the IRI dataset on UChicago Research Computing Center and documents the steps taken to extract the necessary files and directories pertinent to this project, given the limitations of the memory size of personal laptop computers. 
+Section 1 explains the procedure to access the IRI dataset on UChicago Research Computing Center and documents the steps taken to extract the necessary files and directories pertinent to this project, given the limitations of the memory size of personal laptop computers.
 
-Section 2 provides an overview of the IRI dataset and its various dimensions, their limitations. 
+Section 2 provides an overview of the IRI dataset and its various dimensions, their limitations.
 
-Section 3 describes the fact-dimension schema in MySQL. 
+Section 3 describes the fact-dimension schema in MySQL.
 
 Section 4 includes the code to create an blank schema on a local MySQL server.
 
-Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, sales, dates, and economic data) onto the local MySQL server. 
+Section 5-9 works with import, transformation, normalisation, and pushing data (product, store, sales, dates, and economic data) onto the local MySQL server.
 
-Section 10 details the steps taken to migrate the database from local server to Google Cloud SQL. 
+Section 10 details the steps taken to migrate the database from local server to Google Cloud SQL.
 
-Section 11 gives a quick run-down of Cloud SQL access for data visualisation and analysis in Tableau.
+Section 11 lays the foundation for computing on a Google Cloud Platforms Linux virtual machine.
+
+Section 12 gives a quick run-down of Cloud SQL access for data visualisation and analysis in Tableau.
+
+
+### 0.7. Files in the repository
+
+- `README.md`: the readme file
+- `finalProjectNotebook.ipynb`: the Jupyter notebook with write up, data description, notes, and full Python code to read, clean, and manipulate the IRI BEER dataset, and push onto local MySQL server.
+- `beer_ddl.sql`: the data definition language script to define the RMDB schema
+- `beer_eer_diagram.png`: the RMDB data model
+
+- `gcp_vm_init.sh`: the shell script that initialises the Google Cloud Platforms virtual machine; install software, Python packages, prerequisites
+- `gcp_finalProjectNotebook_1.py`: part 1 of the Jupyter notebook that retrieves columns of data from the IRI dataset for NLP clustering
+- `gcp_finalProjectNotebook_2.py`: part 2 of the Jupyer notebook for use on Google Cloud Platforms virtual machine computing; data ingress, manipulation, and import onto GCP Cloud SQL server
+
+- `us_states.csv`: the table of US states and their abbreviations
 
 ---
